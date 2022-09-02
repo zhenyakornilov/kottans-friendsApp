@@ -33,6 +33,10 @@ button {
   outline: inherit;
 }
 
+.body {
+  font-family: "Montserrat", sans-serif;
+}
+
 .main {
   display: flex;
   flex-direction: row;

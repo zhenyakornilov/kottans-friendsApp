@@ -62,6 +62,7 @@ button {
 }
 
 .all-users {
+  padding: 15px;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -75,14 +76,14 @@ button {
   border-radius: 10px;
   text-align: center;
   background-color: #ef8172;
-  width: 300px;
+  width: 280px;
   height: 400px;
 }
 
 .profile-photo {
   display: block;
   border-radius: 50%;
-  margin: 10px auto 0 auto;
+  margin: 10px auto 20px auto;
   border-radius: 1px solid #111;
 }
 

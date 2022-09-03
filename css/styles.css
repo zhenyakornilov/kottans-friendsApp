@@ -57,6 +57,10 @@ button {
   flex-direction: row;
 }
 
+.filter-form {
+  width: 400px;
+}
+
 .all-users {
   width: 100%;
   display: grid;
@@ -71,7 +75,8 @@ button {
   border-radius: 10px;
   text-align: center;
   background-color: #ef8172;
-  width: 90%;
+  width: 300px;
+  height: 400px;
 }
 
 .profile-photo {

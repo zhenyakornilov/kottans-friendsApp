@@ -17,14 +17,16 @@ async function renderUsers() {
       let imageSrc = picture.large;
       return `
         <li class="user-profile-card">
-          <img src="${imageSrc}" class="profile-photo" alt="photo of ${userFullName}">
-          <div class="user-main-info">
-            <span class="user-info">${userFullName}</span>
-            <span class="user-info">${gender}, ${dob.age} y.o.</span>
-          </div>
-          <div class="user-contacts">
-            <span class="user-contact">Phone: ${phone}</span>
-            <span class="user-contact">Email: ${email}</span>
+          <div class="card-wrapper">
+            <img src="${imageSrc}" class="profile-photo" alt="photo of ${userFullName}">
+            <div class="user-main-info">
+              <span class="user-info">${userFullName}</span>
+              <span class="user-info">${gender}, ${dob.age} y.o.</span>
+            </div>
+            <div class="user-contacts">
+              <span class="user-contact">Phone: ${phone}</span>
+              <span class="user-contact">Email: ${email}</span>
+            </div>
           </div>
         </li>
           `;

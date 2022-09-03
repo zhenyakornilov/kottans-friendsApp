@@ -20,7 +20,7 @@ async function renderUsers() {
           <div class="card-wrapper">
             <img src="${imageSrc}" class="profile-photo" alt="photo of ${userFullName}">
             <div class="user-main-info">
-              <span class="user-info">${userFullName}</span>
+              <span class="user-info user-name">${userFullName}</span>
               <span class="user-info">${gender}, ${dob.age} y.o.</span>
             </div>
             <div class="user-contacts">

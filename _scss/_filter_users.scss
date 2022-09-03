@@ -27,6 +27,7 @@
 }
 
 .profile-photo {
+  width: 110px;
   display: block;
   border-radius: 50%;
   margin: 10px auto 20px auto;
@@ -37,4 +38,8 @@
 .user-contact {
   display: block;
   word-wrap: break-word;
+}
+
+.user-name {
+  font-weight: bold;
 }

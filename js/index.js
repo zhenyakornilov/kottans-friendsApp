@@ -1,5 +1,5 @@
 const RANDOM_USERS_URL =
-  "https://randomuser.me/api/1.4/?results=20&nat=ua,us,de,dk,fr,gb&inc=gender,name,dob,registered,phone,picture,nat,email";
+  "https://randomuser.me/api/1.4/?results=20&nat=ua,us,de,dk,fr,gb&inc=gender,name,dob,registered,cell,picture,nat,email";
 
 const allUsers = document.getElementById("allUsers");
 const searchByName = document.getElementById("searchByName");
@@ -25,7 +25,7 @@ async function renderUsers() {
   let users = await fetchUsers(RANDOM_USERS_URL);
   removeLoader();
   let usersHTML = users
-    .map(({ gender, name, dob, phone, picture, email }) => {
+    .map(({ gender, name, dob, cell, picture, email }) => {
       let userFullName = `${name.first} ${name.last}`;
       let imageSrc = picture.large;
       return `
@@ -36,7 +36,7 @@ async function renderUsers() {
             <span class="user-info">${gender}, ${dob.age} y.o.</span>
           </div>
           <div class="user-contacts">
-            <span class="user-contact">Phone: ${phone}</span>
+            <span class="user-contact">Phone: ${cell}</span>
             <span class="user-contact">Email: ${email}</span>
           </div>
         </li>
@@ -66,6 +66,7 @@ function searchByUserName() {
 function resetFilterForm() {
   filterForm.reset();
   const hiddenUsers = allUsers.querySelectorAll(".hidden");
+  console.log(hiddenUsers);
   [...hiddenUsers].map((user) => user.classList.remove("hidden"));
 }
 

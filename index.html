@@ -15,7 +15,7 @@
     <h1 class="title">friends App</h1>
   </header>
   <main class="main">
-    <form class="filter-form" id="filterForm">
+    <form class="filter-form" id="filterForm" onsubmit="event.preventDefault();">
       <input class="search" type="search" name="search" id="searchByName" placeholder="Search by name">
       <button class="reset-button" id="resetFilter" type="button">Reset</button>
     </form>

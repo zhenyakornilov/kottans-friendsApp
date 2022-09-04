@@ -45,7 +45,6 @@ searchByName.addEventListener("keyup", function () {
   let searchInput = document.getElementById("searchByName").value.toLowerCase();
   const usersCards = allUsers.querySelectorAll(".user-profile-card");
 
-  const regex = new RegExp();
   usersCards.forEach((user) => {
     let userName = user.querySelector(".user-name");
     if (!userName.textContent.toLocaleLowerCase().includes(searchInput)) {
@@ -58,6 +57,6 @@ searchByName.addEventListener("keyup", function () {
 
 resetFilter.addEventListener("click", () => {
   filterForm.reset();
-  const hiddenElements = allUsers.querySelectorAll('.hidden');
-  Array.from(hiddenElements, item => item.classList.remove('hidden'));
+  const hiddenUser = allUsers.querySelectorAll('.hidden');
+  [...hiddenUser].map(user => user.classList.remove('hidden'));
 });

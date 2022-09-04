@@ -3,15 +3,34 @@
   flex-direction: row;
 }
 
+.loader.remove {
+  display: none;
+}
+
 .filter-form {
+  margin: 15px 0 0 15px;
   width: 400px;
+  text-align: center;
+  border: 2px solid #ef8172;
+  border-radius: 10px;
+  padding: 10px;
+  height: 400px;
+}
+
+.search {
+  margin-top: 10px;
+  appearance: none;
+  border-bottom: 2px solid #ef8172;
+  width: 280px;
+  text-align: left;
+  padding-bottom: 5px;
 }
 
 .all-users {
   padding: 15px;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 280px);
   gap: 15px;
   justify-items: center;
   align-items: center;
@@ -24,6 +43,10 @@
   background-color: #ef8172;
   width: 280px;
   height: 400px;
+}
+
+.user-profile-card.hidden {
+  display: none;
 }
 
 .profile-photo {

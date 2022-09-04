@@ -20,16 +20,14 @@ async function renderUsers() {
       let imageSrc = picture.large;
       return `
         <li class="user-profile-card">
-          <div class="card-wrapper">
-            <img src="${imageSrc}" class="profile-photo" alt="photo of ${userFullName}">
-            <div class="user-main-info">
-              <span class="user-info user-name">${userFullName}</span>
-              <span class="user-info">${gender}, ${dob.age} y.o.</span>
-            </div>
-            <div class="user-contacts">
-              <span class="user-contact">Phone: ${phone}</span>
-              <span class="user-contact">Email: ${email}</span>
-            </div>
+          <img src="${imageSrc}" class="profile-photo" alt="photo of ${userFullName}">
+          <div class="user-main-info">
+            <span class="user-info user-name">${userFullName}</span>
+            <span class="user-info">${gender}, ${dob.age} y.o.</span>
+          </div>
+          <div class="user-contacts">
+            <span class="user-contact">Phone: ${phone}</span>
+            <span class="user-contact">Email: ${email}</span>
           </div>
         </li>
           `;
@@ -41,7 +39,7 @@ async function renderUsers() {
 
 renderUsers();
 
-searchByName.addEventListener("keyup", function () {
+function searchByUserName() {
   let searchInput = document.getElementById("searchByName").value.toLowerCase();
   const usersCards = allUsers.querySelectorAll(".user-profile-card");
 
@@ -53,10 +51,13 @@ searchByName.addEventListener("keyup", function () {
       user.closest(".user-profile-card").classList.remove("hidden");
     }
   });
-});
+}
 
-resetFilter.addEventListener("click", () => {
+function resetFilterForm() {
   filterForm.reset();
-  const hiddenUser = allUsers.querySelectorAll('.hidden');
-  [...hiddenUser].map(user => user.classList.remove('hidden'));
-});
+  const hiddenUser = allUsers.querySelectorAll(".hidden");
+  [...hiddenUser].map((user) => user.classList.remove("hidden"));
+}
+
+resetFilter.addEventListener("click", resetFilterForm);
+searchByName.addEventListener("keyup", searchByUserName);

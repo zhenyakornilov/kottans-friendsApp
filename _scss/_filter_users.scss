@@ -1,0 +1,45 @@
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.filter-form {
+  width: 400px;
+}
+
+.all-users {
+  padding: 15px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  justify-items: center;
+  align-items: center;
+}
+
+.user-profile-card {
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #ef8172;
+  width: 280px;
+  height: 400px;
+}
+
+.profile-photo {
+  width: 110px;
+  display: block;
+  border-radius: 50%;
+  margin: 10px auto 20px auto;
+  border-radius: 1px solid #111;
+}
+
+.user-info,
+.user-contact {
+  display: block;
+  word-wrap: break-word;
+}
+
+.user-name {
+  font-weight: bold;
+}

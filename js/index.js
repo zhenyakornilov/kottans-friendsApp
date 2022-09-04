@@ -43,7 +43,6 @@ renderUsers();
 
 searchByName.addEventListener("keyup", function () {
   let searchInput = document.getElementById("searchByName").value.toLowerCase();
-  console.log(searchInput);
   const usersCards = allUsers.querySelectorAll(".user-profile-card");
 
   const regex = new RegExp();
@@ -59,4 +58,6 @@ searchByName.addEventListener("keyup", function () {
 
 resetFilter.addEventListener("click", () => {
   filterForm.reset();
+  const hiddenElements = allUsers.querySelectorAll('.hidden');
+  Array.from(hiddenElements, item => item.classList.remove('hidden'));
 });

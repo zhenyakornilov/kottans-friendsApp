@@ -42,9 +42,19 @@ async function renderUsers() {
 renderUsers();
 
 searchByName.addEventListener("keyup", function () {
-  let counter = 0;
-  console.log(counter);
-  counter++;
+  let searchInput = document.getElementById("searchByName").value.toLowerCase();
+  console.log(searchInput);
+  const usersCards = allUsers.querySelectorAll(".user-profile-card");
+
+  const regex = new RegExp();
+  usersCards.forEach((user) => {
+    let userName = user.querySelector(".user-name");
+    if (!userName.textContent.toLocaleLowerCase().includes(searchInput)) {
+      user.closest(".user-profile-card").classList.add("hidden");
+    } else {
+      user.closest(".user-profile-card").classList.remove("hidden");
+    }
+  });
 });
 
 resetFilter.addEventListener("click", () => {

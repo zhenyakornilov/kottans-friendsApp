@@ -99,6 +99,10 @@ button {
   height: 400px;
 }
 
+.user-profile-card.hidden {
+  display: none;
+}
+
 .profile-photo {
   width: 110px;
   display: block;

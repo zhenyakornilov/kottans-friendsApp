@@ -5,15 +5,25 @@ const allUsers = document.getElementById("allUsers");
 const searchByName = document.getElementById("searchByName");
 const filterForm = document.getElementById("filterForm");
 const resetFilter = document.getElementById("resetFilter");
+const loader = document.getElementById("loader");
 
 async function fetchUsers(url) {
-  let res = await fetch(url);
-  usersData = await res.json();
-  return usersData.results;
+  try {
+    let res = await fetch(url);
+    usersData = await res.json();
+    return usersData.results;
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
+function removeLoader() {
+  loader.classList.add("remove");
 }
 
 async function renderUsers() {
   let users = await fetchUsers(RANDOM_USERS_URL);
+  removeLoader();
   let usersHTML = users
     .map(({ gender, name, dob, phone, picture, email }) => {
       let userFullName = `${name.first} ${name.last}`;
@@ -55,8 +65,8 @@ function searchByUserName() {
 
 function resetFilterForm() {
   filterForm.reset();
-  const hiddenUser = allUsers.querySelectorAll(".hidden");
-  [...hiddenUser].map((user) => user.classList.remove("hidden"));
+  const hiddenUsers = allUsers.querySelectorAll(".hidden");
+  [...hiddenUsers].map((user) => user.classList.remove("hidden"));
 }
 
 resetFilter.addEventListener("click", resetFilterForm);

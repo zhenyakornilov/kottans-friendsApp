@@ -61,6 +61,10 @@ button {
   flex-direction: row;
 }
 
+.loader.remove {
+  display: none;
+}
+
 .filter-form {
   margin: 15px 0 0 15px;
   width: 400px;

@@ -2,9 +2,6 @@ const RANDOM_USERS_URL =
   "https://randomuser.me/api/1.4/?results=20&nat=ua,us,de,dk,fr,gb&inc=gender,name,dob,registered,phone,picture,nat,email";
 
 const allUsers = document.getElementById("allUsers");
-const searchByName = document.getElementById("searchByName");
-const filterForm = document.getElementById("filterForm");
-const resetFilter = document.getElementById("resetFilter");
 
 async function fetchUsers(url) {
   let res = await fetch(url);
@@ -40,13 +37,3 @@ async function renderUsers() {
 }
 
 renderUsers();
-
-searchByName.addEventListener("keyup", function () {
-  let counter = 0;
-  console.log(counter);
-  counter++;
-});
-
-resetFilter.addEventListener("click", () => {
-  filterForm.reset();
-});

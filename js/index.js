@@ -1,5 +1,5 @@
 const RANDOM_USERS_URL =
-  "https://randomuser.me/api/1.4/?results=20&nat=ua,us,de,dk,fr,gb&inc=gender,name,dob,registered,cell,picture,nat,email";
+  "https://randomuser.me/api/1.4/?results=10&nat=ua,us,de,dk,fr,gb&inc=gender,name,dob,registered,cell,picture,nat,email";
 
 const allUsers = document.getElementById("allUsers");
 const searchByName = document.getElementById("searchByName");
@@ -21,10 +21,8 @@ function removeLoader() {
   loader.classList.add("remove");
 }
 
-async function renderUsers() {
-  let users = await fetchUsers(RANDOM_USERS_URL);
-  removeLoader();
-  let usersHTML = users
+function renderUsers(usersData) {
+  let allUsersHTML = usersData
     .map(({ gender, name, dob, cell, picture, email }) => {
       let userFullName = `${name.first} ${name.last}`;
       let imageSrc = picture.large;
@@ -44,10 +42,16 @@ async function renderUsers() {
     })
     .join("");
 
-  allUsers.innerHTML = usersHTML;
+  allUsers.innerHTML = allUsersHTML;
 }
 
-renderUsers();
+async function main() {
+  let users = await fetchUsers(RANDOM_USERS_URL);
+  removeLoader();
+  renderUsers(users);
+}
+
+main();
 
 function searchByUserName() {
   let searchInput = document.getElementById("searchByName").value.toLowerCase();

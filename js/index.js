@@ -45,29 +45,33 @@ function renderUsers(usersData) {
   allUsers.innerHTML = allUsersHTML;
 }
 
-function sortByName(a, b) {
-  return `${a.name.first} ${a.name.last}`.localeCompare(
-    `${b.name.first} ${b.name.last}`
-  );
+function sortByName(firstUser, secondUser) {
+  const firtUserFullName = `${firstUser.name.first} ${firstUser.name.last}`;
+  const secondUserFullName = `${secondUser.name.first} ${secondUser.name.last}`;
+  return firtUserFullName.localeCompare(secondUserFullName);
 }
 
-function sortByAge(a, b) {
-  return a.dob.age - b.dob.age;
+function sortByAge(firstUser, secondUser) {
+  return firstUser.dob.age - secondUser.dob.age;
 }
 
 function handleFormFilters(target, usersToSort) {
   switch (target.value) {
     case "nameAsc":
-      usersToSort.sort((a, b) => sortByName(a, b));
+      usersToSort.sort(sortByName);
       break;
     case "nameDesc":
-      usersToSort.sort((a, b) => sortByName(b, a));
+      usersToSort.sort((firstUser, secondUser) =>
+        sortByName(secondUser, firstUser)
+      );
       break;
     case "ageAsc":
-      usersToSort.sort((a, b) => sortByAge(a, b));
+      usersToSort.sort(sortByAge);
       break;
     case "ageDesc":
-      usersToSort.sort((a, b) => sortByAge(b, a));
+      usersToSort.sort((firstUser, secondUser) =>
+        sortByAge(secondUser, firstUser)
+      );
       break;
   }
 }
@@ -92,10 +96,10 @@ async function main() {
   removeLoader();
   renderUsers(users);
 
-  searchByName.addEventListener("keyup", searchByUserName);
   filterForm.addEventListener("input", ({ target }) => {
     handleFormFilters(target, usersToSort);
     renderUsers(usersToSort);
+    searchByUserName();
   });
   resetFilter.addEventListener("click", () => {
     renderUsers(users);

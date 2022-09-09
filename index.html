@@ -16,7 +16,32 @@
   </header>
   <main class="main">
     <form class="filter-form" id="filterForm" onsubmit="event.preventDefault();">
-      <input class="search" type="search" name="search" id="searchByName" placeholder="Search by name">
+      <div class="search-container">
+        <input class="search" type="search" name="search" id="searchByName" placeholder="Search by name">
+      </div>
+      <div class="name-filters">
+        By name:
+        <input type="radio" class="radio-input" id="nameSortAsc" name="nameSort" value="nameAsc">
+        <label for="nameSortAsc">A-Z</label>
+        <input type="radio" class="radio-input" id="nameSortDesc" name="nameSort" value="nameDesc">
+        <label for="nameSortDesc">Z-A</label>
+      </div>
+      <div class="age-filters">
+        By age:
+        <input type="radio" class="radio-input" id="ageSortAsc" name="ageSort" value="nameAsc">
+        <label for="ageSortAsc">Age min</label>
+        <input type="radio" class="radio-input" id="ageSortDesc" name="ageSort" value="nameDesc">
+        <label for="ageSortDesc">Age max</label>
+      </div>
+      <div class="gender-filters">
+        Gender:
+        <input type="radio" class="radio-input" id="male" name="genderSort" value="male">
+        <label for="male">Male</label>
+        <input type="radio" class="radio-input" id="female" name="genderSort" value="female">
+        <label for="female">Female</label>
+        <input type="radio" class="radio-input" id="both" name="genderSort" value="both" checked>
+        <label for="both">Both</label>
+      </div>
       <button class="reset-button" id="resetFilter" type="button">Reset</button>
     </form>
     <div class="loader" id="loader">Loading...</div>

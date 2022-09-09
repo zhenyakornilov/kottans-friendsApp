@@ -45,14 +45,6 @@ function renderUsers(usersData) {
   allUsers.innerHTML = allUsersHTML;
 }
 
-async function main() {
-  let users = await fetchUsers(RANDOM_USERS_URL);
-  removeLoader();
-  renderUsers(users);
-}
-
-main();
-
 function searchByUserName() {
   let searchInput = document.getElementById("searchByName").value.toLowerCase();
   const usersCards = allUsers.querySelectorAll(".user-profile-card");
@@ -67,12 +59,19 @@ function searchByUserName() {
   });
 }
 
-function resetFilterForm() {
-  filterForm.reset();
-  const hiddenUsers = allUsers.querySelectorAll(".hidden");
-  console.log(hiddenUsers);
-  [...hiddenUsers].map((user) => user.classList.remove("hidden"));
+
+
+async function main() {
+  let users = await fetchUsers(RANDOM_USERS_URL);
+  removeLoader();
+  renderUsers(users);
+
+
+  resetFilter.addEventListener("click", () => {
+    renderUsers(users);
+    filterForm.reset();
+  });
+  searchByName.addEventListener("keyup", searchByUserName);
 }
 
-resetFilter.addEventListener("click", resetFilterForm);
-searchByName.addEventListener("keyup", searchByUserName);
+document.addEventListener('DOMContentLoaded', main)

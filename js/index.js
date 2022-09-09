@@ -45,6 +45,33 @@ function renderUsers(usersData) {
   allUsers.innerHTML = allUsersHTML;
 }
 
+function sortByName(a, b) {
+  return `${a.name.first} ${a.name.last}`.localeCompare(
+    `${b.name.first} ${b.name.last}`
+  );
+}
+
+function sortByAge(a, b) {
+  return a.dob.age - b.dob.age;
+}
+
+function handleFormFilters(target, usersToSort) {
+  switch (target.value) {
+    case "nameAsc":
+      usersToSort.sort((a, b) => sortByName(a, b));
+      break;
+    case "nameDesc":
+      usersToSort.sort((a, b) => sortByName(b, a));
+      break;
+    case "ageAsc":
+      usersToSort.sort((a, b) => sortByAge(a, b));
+      break;
+    case "ageDesc":
+      usersToSort.sort((a, b) => sortByAge(b, a));
+      break;
+  }
+}
+
 function searchByUserName() {
   let searchInput = document.getElementById("searchByName").value.toLowerCase();
   const usersCards = allUsers.querySelectorAll(".user-profile-card");
@@ -59,19 +86,21 @@ function searchByUserName() {
   });
 }
 
-
-
 async function main() {
-  let users = await fetchUsers(RANDOM_USERS_URL);
+  const users = await fetchUsers(RANDOM_USERS_URL);
+  const usersToSort = [...users];
   removeLoader();
   renderUsers(users);
 
-
+  searchByName.addEventListener("keyup", searchByUserName);
+  filterForm.addEventListener("input", ({ target }) => {
+    handleFormFilters(target, usersToSort);
+    renderUsers(usersToSort);
+  });
   resetFilter.addEventListener("click", () => {
     renderUsers(users);
     filterForm.reset();
   });
-  searchByName.addEventListener("keyup", searchByUserName);
 }
 
-document.addEventListener('DOMContentLoaded', main)
+document.addEventListener("DOMContentLoaded", main);

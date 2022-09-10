@@ -63,21 +63,21 @@ function sortByAge(firstUser, secondUser) {
   return firstUser.dob.age - secondUser.dob.age;
 }
 
-function handleFormFilters(target) {
+function handleFormFilters(target, usersToSort) {
   switch (target.value) {
     case "nameAsc":
-      sortedUsers.sort(sortByName);
+      usersToSort.sort(sortByName);
       break;
     case "nameDesc":
-      sortedUsers.sort((firstUser, secondUser) =>
+      usersToSort.sort((firstUser, secondUser) =>
         sortByName(secondUser, firstUser)
       );
       break;
     case "ageAsc":
-      sortedUsers.sort(sortByAge);
+      usersToSort.sort(sortByAge);
       break;
     case "ageDesc":
-      sortedUsers.sort((firstUser, secondUser) =>
+      usersToSort.sort((firstUser, secondUser) =>
         sortByAge(secondUser, firstUser)
       );
       break;
@@ -98,9 +98,24 @@ function searchByUserName() {
   });
 }
 
+function filterByGender(target) {
+  sortedByGender = [];
+  if (target.value === "both") {
+    return sortedUsers;
+  } else if (target.value === "male" || target.value === "female") {
+    sortedByGender = sortedUsers.filter(
+      ({ gender }) => gender === `${target.value}`
+    );
+    return sortedByGender;
+  }
+
+  return sortedUsers;
+}
+
 function handleFormEvents({ target }) {
-  handleFormFilters(target);
-  renderUsers(sortedUsers);
+  const usersToRender = filterByGender(target);
+  handleFormFilters(target, usersToRender);
+  renderUsers(usersToRender);
   searchByUserName();
 }
 

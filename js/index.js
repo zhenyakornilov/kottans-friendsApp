@@ -7,6 +7,7 @@ const filterForm = document.getElementById("filterForm");
 const resetFilter = document.getElementById("resetFilter");
 const loader = document.getElementById("loader");
 let users = [];
+let sortedUsers = [];
 
 function handleErrors(response) {
   if (!response.ok) throw Error(response.statusText);
@@ -20,7 +21,7 @@ async function fetchUsers(url) {
     usersData = await errorHandledResponse.json();
     return usersData.results;
   } catch (err) {
-    console.warn(err);
+    console.error(err);
   }
 }
 
@@ -65,16 +66,20 @@ function sortByAge(firstUser, secondUser) {
 function handleFormFilters(target) {
   switch (target.value) {
     case "nameAsc":
-      users.sort(sortByName);
+      sortedUsers.sort(sortByName);
       break;
     case "nameDesc":
-      users.sort((firstUser, secondUser) => sortByName(secondUser, firstUser));
+      sortedUsers.sort((firstUser, secondUser) =>
+        sortByName(secondUser, firstUser)
+      );
       break;
     case "ageAsc":
-      users.sort(sortByAge);
+      sortedUsers.sort(sortByAge);
       break;
     case "ageDesc":
-      users.sort((firstUser, secondUser) => sortByAge(secondUser, firstUser));
+      sortedUsers.sort((firstUser, secondUser) =>
+        sortByAge(secondUser, firstUser)
+      );
       break;
   }
 }
@@ -93,22 +98,27 @@ function searchByUserName() {
   });
 }
 
+function handleFormEvents({ target }) {
+  handleFormFilters(target);
+  renderUsers(sortedUsers);
+  searchByUserName();
+}
+
+function resetForm() {
+  renderUsers(users);
+  filterForm.reset();
+}
+
 async function main() {
   const fakeUsers = await fetchUsers(RANDOM_USERS_URL);
 
   removeLoader();
   renderUsers(fakeUsers);
   users = [...fakeUsers];
+  sortedUsers = [...users];
 
-  filterForm.addEventListener("input", ({ target }) => {
-    handleFormFilters(target);
-    renderUsers(users);
-    searchByUserName();
-  });
-  resetFilter.addEventListener("click", () => {
-    renderUsers(fakeUsers);
-    filterForm.reset();
-  });
+  filterForm.addEventListener("input", handleFormEvents);
+  resetFilter.addEventListener("click", resetForm);
 }
 
 document.addEventListener("DOMContentLoaded", main);

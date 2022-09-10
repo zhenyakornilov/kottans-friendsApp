@@ -6,6 +6,7 @@ const searchByName = document.getElementById("searchByName");
 const filterForm = document.getElementById("filterForm");
 const resetFilter = document.getElementById("resetFilter");
 const loader = document.getElementById("loader");
+let users = [];
 
 async function fetchUsers(url) {
   try {
@@ -55,21 +56,21 @@ function sortByAge(firstUser, secondUser) {
   return firstUser.dob.age - secondUser.dob.age;
 }
 
-function handleFormFilters(target, usersToSort) {
+function handleFormFilters(target) {
   switch (target.value) {
     case "nameAsc":
-      usersToSort.sort(sortByName);
+      users.sort(sortByName);
       break;
     case "nameDesc":
-      usersToSort.sort((firstUser, secondUser) =>
+      users.sort((firstUser, secondUser) =>
         sortByName(secondUser, firstUser)
       );
       break;
     case "ageAsc":
-      usersToSort.sort(sortByAge);
+      users.sort(sortByAge);
       break;
     case "ageDesc":
-      usersToSort.sort((firstUser, secondUser) =>
+      users.sort((firstUser, secondUser) =>
         sortByAge(secondUser, firstUser)
       );
       break;
@@ -91,18 +92,19 @@ function searchByUserName() {
 }
 
 async function main() {
-  const users = await fetchUsers(RANDOM_USERS_URL);
-  const usersToSort = [...users];
+  const fakeUsers = await fetchUsers(RANDOM_USERS_URL);
+
   removeLoader();
-  renderUsers(users);
+  renderUsers(fakeUsers);
+  users = [...fakeUsers];
 
   filterForm.addEventListener("input", ({ target }) => {
-    handleFormFilters(target, usersToSort);
-    renderUsers(usersToSort);
+    handleFormFilters(target);
+    renderUsers(users);
     searchByUserName();
   });
   resetFilter.addEventListener("click", () => {
-    renderUsers(users);
+    renderUsers(fakeUsers);
     filterForm.reset();
   });
 }

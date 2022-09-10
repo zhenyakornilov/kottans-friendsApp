@@ -8,13 +8,19 @@ const resetFilter = document.getElementById("resetFilter");
 const loader = document.getElementById("loader");
 let users = [];
 
+function handleErrors(response) {
+  if (!response.ok) throw Error(response.statusText);
+  return response;
+}
+
 async function fetchUsers(url) {
   try {
-    let res = await fetch(url);
-    usersData = await res.json();
+    const res = await fetch(url);
+    errorHandledResponse = handleErrors(res);
+    usersData = await errorHandledResponse.json();
     return usersData.results;
   } catch (err) {
-    throw new Error(err);
+    console.warn(err);
   }
 }
 
@@ -62,17 +68,13 @@ function handleFormFilters(target) {
       users.sort(sortByName);
       break;
     case "nameDesc":
-      users.sort((firstUser, secondUser) =>
-        sortByName(secondUser, firstUser)
-      );
+      users.sort((firstUser, secondUser) => sortByName(secondUser, firstUser));
       break;
     case "ageAsc":
       users.sort(sortByAge);
       break;
     case "ageDesc":
-      users.sort((firstUser, secondUser) =>
-        sortByAge(secondUser, firstUser)
-      );
+      users.sort((firstUser, secondUser) => sortByAge(secondUser, firstUser));
       break;
   }
 }

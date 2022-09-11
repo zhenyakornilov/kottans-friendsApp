@@ -9,6 +9,11 @@ const loader = document.getElementById("loader");
 let users = [];
 let usersCopy = [];
 
+const filtersToApply = {
+  nameOrAgeFilter: true,
+  genderFilter: false,
+}
+
 function handleErrors(response) {
   if (!response.ok) throw Error(response.statusText);
   return response;

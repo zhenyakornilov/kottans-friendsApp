@@ -1,5 +1,5 @@
 const RANDOM_USERS_URL =
-  "https://randomuser.me/api/1.4/?results=10&nat=ua,us,de,dk,fr,gb&inc=gender,name,dob,registered,cell,picture,nat,email";
+  "https://randomuser.me/api/1.4/?results=3&nat=ua,us,de,dk,fr,gb&inc=gender,name,dob,registered,cell,picture,nat,email";
 
 const allUsers = document.getElementById("allUsers");
 const searchByName = document.getElementById("searchByName");
@@ -7,7 +7,7 @@ const filterForm = document.getElementById("filterForm");
 const resetFilter = document.getElementById("resetFilter");
 const loader = document.getElementById("loader");
 let users = [];
-let sortedUsers = [];
+let usersCopy = [];
 
 function handleErrors(response) {
   if (!response.ok) throw Error(response.statusText);
@@ -63,25 +63,41 @@ function sortByAge(firstUser, secondUser) {
   return firstUser.dob.age - secondUser.dob.age;
 }
 
-function handleFormFilters(target, usersToSort) {
+function sortByNameOrAge(target, usersToSort) {
+  let sortedUsers = [...usersToSort];
   switch (target.value) {
     case "nameAsc":
-      usersToSort.sort(sortByName);
+      sortedUsers.sort(sortByName);
       break;
     case "nameDesc":
-      usersToSort.sort((firstUser, secondUser) =>
+      sortedUsers.sort((firstUser, secondUser) =>
         sortByName(secondUser, firstUser)
       );
       break;
     case "ageAsc":
-      usersToSort.sort(sortByAge);
+      sortedUsers.sort(sortByAge);
       break;
     case "ageDesc":
-      usersToSort.sort((firstUser, secondUser) =>
+      sortedUsers.sort((firstUser, secondUser) =>
         sortByAge(secondUser, firstUser)
       );
       break;
   }
+
+  return sortedUsers;
+}
+
+function filterByGender(target, usersToFilter) {
+  let filteredUsers = [...usersToFilter];
+  if (target.value === "both") {
+    return usersToFilter;
+  } else if (target.value === "male" || target.value === "female") {
+    usersToFilter = usersToFilter.filter(
+      ({ gender }) => gender === `${target.value}`
+    );
+    return usersToFilter;
+  }
+  return filteredUsers;
 }
 
 function searchByUserName() {
@@ -98,29 +114,17 @@ function searchByUserName() {
   });
 }
 
-function filterByGender(target) {
-  sortedByGender = [];
-  if (target.value === "both") {
-    return sortedUsers;
-  } else if (target.value === "male" || target.value === "female") {
-    sortedByGender = sortedUsers.filter(
-      ({ gender }) => gender === `${target.value}`
-    );
-    return sortedByGender;
-  }
-
-  return sortedUsers;
-}
-
 function handleFormEvents({ target }) {
-  const usersToRender = filterByGender(target);
-  handleFormFilters(target, usersToRender);
+  let usersToRender = [...usersCopy];
+  usersToRender = sortByNameOrAge(target, usersToRender);
+  usersToRender = filterByGender(target, usersToRender);
   renderUsers(usersToRender);
   searchByUserName();
 }
 
 function resetForm() {
   renderUsers(users);
+  usersCopy = [...users];
   filterForm.reset();
 }
 
@@ -130,7 +134,7 @@ async function main() {
   removeLoader();
   renderUsers(fakeUsers);
   users = [...fakeUsers];
-  sortedUsers = [...users];
+  usersCopy = [...users];
 
   filterForm.addEventListener("input", handleFormEvents);
   resetFilter.addEventListener("click", resetForm);

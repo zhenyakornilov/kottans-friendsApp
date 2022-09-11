@@ -6,14 +6,22 @@ const searchByName = document.getElementById("searchByName");
 const filterForm = document.getElementById("filterForm");
 const resetFilter = document.getElementById("resetFilter");
 const loader = document.getElementById("loader");
+let users = [];
+let sortedUsers = [];
+
+function handleErrors(response) {
+  if (!response.ok) throw Error(response.statusText);
+  return response;
+}
 
 async function fetchUsers(url) {
   try {
-    let res = await fetch(url);
-    usersData = await res.json();
+    const res = await fetch(url);
+    errorHandledResponse = handleErrors(res);
+    usersData = await errorHandledResponse.json();
     return usersData.results;
   } catch (err) {
-    throw new Error(err);
+    console.error(err);
   }
 }
 
@@ -90,21 +98,42 @@ function searchByUserName() {
   });
 }
 
-async function main() {
-  const users = await fetchUsers(RANDOM_USERS_URL);
-  const usersToSort = [...users];
-  removeLoader();
-  renderUsers(users);
+function filterByGender(target) {
+  sortedByGender = [];
+  if (target.value === "both") {
+    return sortedUsers;
+  } else if (target.value === "male" || target.value === "female") {
+    sortedByGender = sortedUsers.filter(
+      ({ gender }) => gender === `${target.value}`
+    );
+    return sortedByGender;
+  }
 
-  filterForm.addEventListener("input", ({ target }) => {
-    handleFormFilters(target, usersToSort);
-    renderUsers(usersToSort);
-    searchByUserName();
-  });
-  resetFilter.addEventListener("click", () => {
-    renderUsers(users);
-    filterForm.reset();
-  });
+  return sortedUsers;
+}
+
+function handleFormEvents({ target }) {
+  const usersToRender = filterByGender(target);
+  handleFormFilters(target, usersToRender);
+  renderUsers(usersToRender);
+  searchByUserName();
+}
+
+function resetForm() {
+  renderUsers(users);
+  filterForm.reset();
+}
+
+async function main() {
+  const fakeUsers = await fetchUsers(RANDOM_USERS_URL);
+
+  removeLoader();
+  renderUsers(fakeUsers);
+  users = [...fakeUsers];
+  sortedUsers = [...users];
+
+  filterForm.addEventListener("input", handleFormEvents);
+  resetFilter.addEventListener("click", resetForm);
 }
 
 document.addEventListener("DOMContentLoaded", main);

@@ -18,53 +18,82 @@
   background-color: #fff;
 }
 
+.search-container {
+  margin-bottom: 5px;
+}
+
 .search {
   all: unset;
-  margin-top: 10px;
   appearance: none;
   border-bottom: 2px solid #ef8172;
   width: 280px;
   text-align: left;
   padding-bottom: 5px;
+  margin: 10px 0 10px 0;
 }
 
-.all-users {
-  padding: 15px;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, 280px);
-  gap: 15px;
-  justify-items: center;
-  align-items: center;
+.search:focus::placeholder {
+  color: #111;
+  opacity: 1;
 }
 
-.user-profile-card {
-  color: #fff;
-  border-radius: 10px;
-  text-align: center;
-  background-color: #ef8172;
-  width: 280px;
-  height: 400px;
-}
-
-.user-profile-card.hidden {
-  display: none;
-}
-
-.profile-photo {
-  width: 110px;
+.additional-text {
   display: block;
+  margin-bottom: 10px;
+}
+
+.name-sorters,
+.age-sorters,
+.gender-filters {
+  margin: 10px 0 10px 0;
+}
+
+.option-label {
+  position: relative;
+  cursor: pointer;
+  padding-left: 25px;
+  margin-left: 5px;
+}
+
+.option-label:hover .radio-input ~ .option-button {
+  background-color: #2e2e2e;
+}
+
+.option-label .radio-input:checked ~ .option-button {
+  background-color: #2e2e2e;
+}
+
+.radio-input {
+  appearance: none;
+  position: absolute;
+}
+
+.option-button {
+  position: absolute;
+  background-color: #bbc4c2;
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
-  margin: 10px auto 20px auto;
-  border-radius: 1px solid #111;
+  top: 0;
+  left: 0;
+  transition: 0.2s ease-in-out;
 }
 
-.user-info,
-.user-contact {
+.option-button:after {
+  content: "";
+  display: none;
+  position: absolute;
+}
+
+.option-label .option-button::after {
+  inset: 0;
+  margin: auto;
+  background-color: #ff4c68;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.option-label .radio-input:checked ~ .option-button::after {
   display: block;
-  word-wrap: break-word;
-}
-
-.user-name {
-  font-weight: bold;
 }

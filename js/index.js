@@ -39,14 +39,19 @@ function renderUsers(usersData) {
       let imageSrc = picture.large;
       return `
         <li class="user-profile-card">
-          <img src="${imageSrc}" class="profile-photo" alt="photo of ${userFullName}">
-          <div class="user-main-info">
-            <span class="user-info user-name">${userFullName}</span>
-            <span class="user-info">${gender}, ${dob.age} y.o.</span>
+          <div class="card-top"></div>
+          <div class="photo-wrapper">
+            <img src="${imageSrc}" class="profile-photo" alt="photo of ${userFullName}">
+          </div>
+          <div class="user-info">
+            <span class="age-and-gender">${gender}, ${dob.age} y.o.</span>
           </div>
           <div class="user-contacts">
-            <span class="user-contact">Phone: ${cell}</span>
-            <span class="user-contact">Email: ${email}</span>
+            <span class="user-phone">Phone:</span>${cell}
+            <span class="user-email">Email:</span>${email}
+          </div>
+          <div class="card-bottom">
+            <span class="user-name">${userFullName}</span>
           </div>
         </li>
           `;
@@ -132,11 +137,9 @@ function renderByAppliedFilters(filterValue, sortValue) {
   let usersToRender = [...usersCopy];
   if (genderFilterValue) {
     usersToRender = filterByGender(filterValue, usersToRender);
-    console.log(usersToRender);
   }
   if (nameOrAgeSortValue) {
     usersToRender = sortByNameOrAge(sortValue, usersToRender);
-    console.log(usersToRender);
   }
 
   renderUsers(usersToRender);
@@ -160,3 +163,4 @@ async function main() {
 }
 
 document.addEventListener("DOMContentLoaded", main);
+onload = () => filterForm.reset();

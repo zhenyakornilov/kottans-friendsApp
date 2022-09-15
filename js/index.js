@@ -137,11 +137,9 @@ function renderByAppliedFilters(filterValue, sortValue) {
   let usersToRender = [...usersCopy];
   if (genderFilterValue) {
     usersToRender = filterByGender(filterValue, usersToRender);
-    console.log(usersToRender);
   }
   if (nameOrAgeSortValue) {
     usersToRender = sortByNameOrAge(sortValue, usersToRender);
-    console.log(usersToRender);
   }
 
   renderUsers(usersToRender);

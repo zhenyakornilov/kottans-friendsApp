@@ -95,6 +95,7 @@ button {
 }
 
 .user-profile-card {
+  position: relative;
   color: #fff;
   border-radius: 10px;
   text-align: center;
@@ -107,18 +108,43 @@ button {
   display: none;
 }
 
+.card-top {
+  background-color: #2e2e2e;
+  border-radius: 10px 10px 0 0;
+  height: 100px;
+}
+
+.photo-wrapper {
+  padding: 7px;
+  top: -75px;
+  position: relative;
+  width: 125px;
+  height: 125px;
+  background-color: #ef8172;
+  border-radius: 100%;
+  margin: 10px auto 0 auto;
+}
+
 .profile-photo {
-  width: 110px;
-  display: block;
+  width: 100%;
   border-radius: 50%;
-  margin: 10px auto 20px auto;
-  border-radius: 1px solid #111;
+  object-fit: cover;
 }
 
 .user-info,
 .user-contact {
   display: block;
   word-wrap: break-word;
+}
+
+.card-bottom {
+  width: 100%;
+  height: 50px;
+  background-color: #2e2e2e;
+  border-radius: 0 0 10px 10px;
+  position: absolute;
+  bottom: 0;
+  line-height: 50px;
 }
 
 .user-name {

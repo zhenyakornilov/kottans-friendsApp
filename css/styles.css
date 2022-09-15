@@ -52,6 +52,15 @@ button {
 .main {
   display: flex;
   flex-direction: row;
+  position: relative;
+}
+
+.loader {
+  position: absolute;
+  color: #2e2e2e;
+  font-size: 24px;
+  font-weight: bold;
+  left: 50%;
 }
 
 .loader.remove {

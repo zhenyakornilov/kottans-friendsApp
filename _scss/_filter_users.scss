@@ -14,7 +14,7 @@
   border: 2px solid #ef8172;
   border-radius: 10px;
   padding: 10px;
-  height: 400px;
+  height: 340px;
   background-color: #fff;
 }
 
@@ -55,7 +55,8 @@
   margin-left: 5px;
 }
 
-.option-label:hover .radio-input ~ .option-button {
+.option-label:hover .radio-input ~ .option-button,
+.option-label:focus-within .option-button {
   background-color: #2e2e2e;
 }
 
@@ -66,6 +67,8 @@
 .radio-input {
   appearance: none;
   position: absolute;
+  height: 0;
+  width: 0;
 }
 
 .option-button {
@@ -96,4 +99,21 @@
 
 .option-label .radio-input:checked ~ .option-button::after {
   display: block;
+}
+
+.reset-button {
+  height: 30px;
+  background-color: #2e2e2e;
+  color: #ff4c68;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: 0.2s ease-in-out;
+}
+
+.reset-button:hover,
+.reset-button:focus {
+  background-color: #5c5c5c;
+  color: #fff;
 }

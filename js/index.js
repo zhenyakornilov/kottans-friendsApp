@@ -6,9 +6,9 @@ const searchByName = document.getElementById("searchByName");
 const filterForm = document.getElementById("filterForm");
 const resetFilter = document.getElementById("resetFilter");
 const loader = document.getElementById("loader");
+
 let users = [];
 let usersCopy = [];
-
 let genderFilterValue = "";
 let nameOrAgeSortValue = "";
 

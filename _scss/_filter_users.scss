@@ -1,6 +1,15 @@
 .main {
   display: flex;
   flex-direction: row;
+  position: relative;
+}
+
+.loader {
+  position: absolute;
+  color: #2e2e2e;
+  font-size: 24px;
+  font-weight: bold;
+  left: 50%;
 }
 
 .loader.remove {
@@ -9,7 +18,7 @@
 
 .filter-form {
   margin: 15px 0 0 15px;
-  width: 400px;
+  width: 340px;
   text-align: center;
   border: 2px solid #ef8172;
   border-radius: 10px;
@@ -27,10 +36,10 @@
   all: unset;
   appearance: none;
   border-bottom: 2px solid #ef8172;
-  width: 280px;
+  width: 260px;
   text-align: left;
   padding-bottom: 5px;
-  margin: 10px 0 10px 0;
+  margin: 10px 10px 10px 10px;
 }
 
 .search:focus::placeholder {

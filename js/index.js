@@ -47,8 +47,8 @@ function renderUsers(usersData) {
             <span class="age-and-gender">${gender}, ${dob.age} y.o.</span>
           </div>
           <div class="user-contacts">
-            <span class="user-phone">Phone: ${cell}</span>
-            <span class="user-email">Email: ${email}</span>
+            <span class="user-phone">Phone:</span>${cell}
+            <span class="user-email">Email:</span>${email}
           </div>
           <div class="card-bottom">
             <span class="user-name">${userFullName}</span>

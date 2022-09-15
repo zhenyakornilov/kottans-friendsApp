@@ -131,9 +131,28 @@ button {
   object-fit: cover;
 }
 
-.user-info,
-.user-contact {
+.user-info {
+  margin-top: -70px;
+}
+
+.age-and-gender,
+.user-phone,
+.user-email {
+  font-weight: bold;
+}
+
+.user-phone,
+.user-email {
   display: block;
+}
+
+.user-email {
+  margin-top: 8px;
+}
+
+.user-contacts {
+  margin-top: 40px;
+  padding: 0 20px 0 20px;
   word-wrap: break-word;
 }
 
@@ -149,4 +168,5 @@ button {
 
 .user-name {
   font-weight: bold;
+  font-size: 18px;
 }

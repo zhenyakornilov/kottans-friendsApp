@@ -30,7 +30,7 @@ button {
 
 .body {
   font-family: "Montserrat", sans-serif;
-  background-color: #fffaf0;
+  background-color: #d6d6d6;
 }
 
 .header {
@@ -40,6 +40,7 @@ button {
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 20px;
+  box-shadow: 0 0 4px 0 #2e2e2e;
 }
 
 .title {
@@ -65,7 +66,8 @@ button {
   border-radius: 10px;
   padding: 10px;
   height: 340px;
-  background-color: #fff;
+  background-color: #f4f4f4;
+  box-shadow: 0 0 6px 1.2px #ef8172;
 }
 
 .search-container {
@@ -186,7 +188,7 @@ button {
   background-color: #ef8172;
   width: 280px;
   height: 400px;
-  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 3px 1px #2e2e2e;
 }
 
 .user-profile-card.hidden {

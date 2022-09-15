@@ -74,14 +74,76 @@ button {
   background-color: #fff;
 }
 
+.search-container {
+  margin-bottom: 5px;
+}
+
 .search {
   all: unset;
-  margin-top: 10px;
   appearance: none;
   border-bottom: 2px solid #ef8172;
   width: 280px;
   text-align: left;
   padding-bottom: 5px;
+  margin: 10px 0 10px 0;
+}
+
+.search:focus::placeholder {
+  color: #111;
+  opacity: 1;
+}
+
+.additional-text {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.name-sorters,
+.age-sorters,
+.gender-filters {
+  margin: 10px 0 10px 0;
+}
+
+.option-label {
+  position: relative;
+  cursor: pointer;
+  padding-left: 25px;
+  margin-left: 5px;
+}
+
+.option-label:hover .radio-input ~ .option-button {
+  background-color: #2e2e2e;
+}
+
+.option-label .radio-input:checked ~ .option-button {
+  background-color: #2e2e2e;
+}
+
+.radio-input {
+  appearance: none;
+  position: absolute;
+}
+
+.option-button {
+  position: absolute;
+  background-color: #bbc4c2;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  transition: 0.2s ease-in-out;
+}
+
+.option-button:after {
+  content: "";
+  display: none;
+  position: absolute;
+}
+
+.option-label .radio-input:checked ~ .option-button::after {
+  background-color: wheat;
+  width: 5px;
 }
 
 .all-users {

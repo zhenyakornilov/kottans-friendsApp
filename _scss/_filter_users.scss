@@ -24,7 +24,6 @@
   position: absolute;
   top: 45%;
   left: 48%;
-  transform: translate(-48%, -45%);
   animation: spin 0.4s infinite linear;
 }
 
@@ -34,7 +33,7 @@
   border: 2px solid #ef8172;
   border-radius: 10px;
   padding: 10px;
-  height: 340px;
+  height: 335px;
   background-color: #f4f4f4;
   box-shadow: 0 0 6px 1.2px #ef8172;
 }
@@ -46,7 +45,6 @@
 
 .search {
   all: unset;
-  appearance: none;
   border-bottom: 2px solid #ef8172;
   width: 260px;
   text-align: left;
@@ -89,8 +87,6 @@
 .radio-input {
   appearance: none;
   position: absolute;
-  height: 0;
-  width: 0;
 }
 
 .option-button {
@@ -99,8 +95,7 @@
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  top: 0;
-  left: 0;
+  inset: 0;
   transition: 0.2s ease-in-out;
 }
 

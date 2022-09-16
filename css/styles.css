@@ -34,6 +34,7 @@ button {
 }
 
 .header {
+  position: relative;
   background-color: #ff4c68;
   height: 50px;
   display: flex;
@@ -41,6 +42,7 @@ button {
   justify-content: flex-start;
   margin-bottom: 20px;
   box-shadow: 0 0 4px 0 #2e2e2e;
+  z-index: 7;
 }
 
 .title {
@@ -51,20 +53,32 @@ button {
 
 .main {
   display: flex;
-  flex-direction: row;
-  position: relative;
+}
+
+.loader-wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #d6d6d6;
+  z-index: 6;
+}
+
+.loader-wrapper.remove {
+  display: none;
 }
 
 .loader {
+  width: 50px;
+  height: 50px;
+  border: 7px solid #2e2e2e;
+  border-top: 7px solid #ff4c68;
+  border-radius: 50%;
+  background-color: #d6d6d6;
   position: absolute;
-  color: #2e2e2e;
-  font-size: 24px;
-  font-weight: bold;
+  top: 45%;
   left: 50%;
-}
-
-.loader.remove {
-  display: none;
+  transform: translate(-50%, -45%);
+  animation: spin 0.4s infinite linear;
 }
 
 .filter-form {
@@ -179,6 +193,14 @@ button {
   color: #fff;
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .all-users {
   padding: 15px;
   width: 100%;

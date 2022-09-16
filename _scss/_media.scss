@@ -1,0 +1,10 @@
+@media screen and (max-width: 1024px) {
+  .main {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .filter-form {
+    margin: 0 auto 0 auto;
+  }
+}

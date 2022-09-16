@@ -23,14 +23,13 @@
   background-color: #d6d6d6;
   position: absolute;
   top: 45%;
-  left: 50%;
-  transform: translate(-50%, -45%);
+  left: 48%;
+  transform: translate(-48%, -45%);
   animation: spin 0.4s infinite linear;
 }
 
 .filter-form {
   margin: 15px 0 0 15px;
-  width: 340px;
   text-align: center;
   border: 2px solid #ef8172;
   border-radius: 10px;
@@ -41,6 +40,7 @@
 }
 
 .search-container {
+  grid-area: search;
   margin-bottom: 5px;
 }
 

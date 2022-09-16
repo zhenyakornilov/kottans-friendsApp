@@ -4,6 +4,7 @@
 }
 
 .header {
+  position: relative;
   background-color: #ff4c68;
   height: 50px;
   display: flex;
@@ -11,6 +12,7 @@
   justify-content: flex-start;
   margin-bottom: 20px;
   box-shadow: 0 0 4px 0 #2e2e2e;
+  z-index: 7;
 }
 
 .title {

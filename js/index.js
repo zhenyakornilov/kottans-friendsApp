@@ -94,14 +94,11 @@ function sortByNameOrAge(sortValue, usersToSort) {
 }
 
 function filterByGender(filterValue, usersToFilter) {
-  let filteredUsers = [...usersToFilter];
+  const filteredUsers = [...usersToFilter];
   if (filterValue === "both") {
     return filteredUsers;
   } else if (filterValue === "male" || filterValue === "female") {
-    filteredUsers = filteredUsers.filter(
-      ({ gender }) => gender === `${filterValue}`
-    );
-    return filteredUsers;
+    return filteredUsers.filter(({ gender }) => gender === `${filterValue}`);
   }
 }
 

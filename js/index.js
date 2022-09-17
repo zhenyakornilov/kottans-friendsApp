@@ -19,8 +19,8 @@ function handleErrors(response) {
 async function fetchUsers(url) {
   try {
     const res = await fetch(url);
-    errorHandledResponse = handleErrors(res);
-    usersData = await errorHandledResponse.json();
+    errorCheck = handleErrors(res);
+    usersData = await errorCheck.json();
     return usersData.results;
   } catch (err) {
     console.error(err);
@@ -116,7 +116,7 @@ function searchByUserName() {
   });
 }
 
-function applySelectedFilters({ target }) {
+function applyFilters({ target }) {
   if (target.name === "nameOrAgeSort") {
     nameOrAgeSortValue = target.value;
   }
@@ -125,11 +125,11 @@ function applySelectedFilters({ target }) {
     genderFilterValue = target.value;
   }
 
-  renderByAppliedFilters(genderFilterValue, nameOrAgeSortValue);
+  renderByFilters(genderFilterValue, nameOrAgeSortValue);
   searchByUserName();
 }
 
-function renderByAppliedFilters(filterValue, sortValue) {
+function renderByFilters(filterValue, sortValue) {
   let usersToRender = [...users];
   if (genderFilterValue) {
     usersToRender = filterByGender(filterValue, usersToRender);
@@ -153,7 +153,7 @@ async function main() {
   renderUsers(fakeUsers);
   users = [...fakeUsers];
 
-  filterForm.addEventListener("input", applySelectedFilters);
+  filterForm.addEventListener("input", applyFilters);
   resetFilter.addEventListener("click", () => resetForm(fakeUsers));
 }
 

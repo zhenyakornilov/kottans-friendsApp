@@ -8,7 +8,6 @@ const resetFilter = document.getElementById("resetFilter");
 const loader = document.getElementById("loader");
 
 let users = [];
-let usersCopy = [];
 let genderFilterValue = "";
 let nameOrAgeSortValue = "";
 
@@ -134,7 +133,7 @@ function applySelectedFilters({ target }) {
 }
 
 function renderByAppliedFilters(filterValue, sortValue) {
-  let usersToRender = [...usersCopy];
+  let usersToRender = [...users];
   if (genderFilterValue) {
     usersToRender = filterByGender(filterValue, usersToRender);
   }
@@ -145,9 +144,9 @@ function renderByAppliedFilters(filterValue, sortValue) {
   renderUsers(usersToRender);
 }
 
-function resetForm() {
-  renderUsers(users);
-  usersCopy = [...users];
+function resetForm(fetchedUsers) {
+  renderUsers(fetchedUsers);
+  users = [...fetchedUsers];
   filterForm.reset();
 }
 
@@ -156,10 +155,9 @@ async function main() {
   removeLoader();
   renderUsers(fakeUsers);
   users = [...fakeUsers];
-  usersCopy = [...users];
 
   filterForm.addEventListener("input", applySelectedFilters);
-  resetFilter.addEventListener("click", resetForm);
+  resetFilter.addEventListener("click", () => resetForm(fakeUsers));
 }
 
 document.addEventListener("DOMContentLoaded", main);

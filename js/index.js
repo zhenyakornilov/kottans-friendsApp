@@ -62,9 +62,9 @@ function renderUsers(usersData) {
 }
 
 function sortByName(firstUser, secondUser) {
-  const firtUserFullName = `${firstUser.name.first} ${firstUser.name.last}`;
+  const firstUserFullName = `${firstUser.name.first} ${firstUser.name.last}`;
   const secondUserFullName = `${secondUser.name.first} ${secondUser.name.last}`;
-  return firtUserFullName.localeCompare(secondUserFullName);
+  return firstUserFullName.localeCompare(secondUserFullName);
 }
 
 function sortByAge(firstUser, secondUser) {

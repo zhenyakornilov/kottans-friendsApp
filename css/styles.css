@@ -300,6 +300,7 @@ button {
   .main {
     flex-wrap: wrap;
     flex-direction: column;
+    width: 100%;
   }
 
   .filter-form {
